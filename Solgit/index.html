@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOLGIT – Internal Dev Platform</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOLGIT Playground – Internal Dev Platform</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="light-theme">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-mark">S</div>
+      <div class="logo-text">
+        <span class="logo-main">SOLGIT</span>
+        <span class="logo-sub">Internal Dev Platform</span>
+      </div>
+    </div>
 
-<body>
-  <header class="header">
-    <img class="logo" src="./assets/logo.svg" alt="SOLGIT Logo">
-    <h1>SOLGIT Playground</h1>
-    <p>Shinhan Bank Internal Developer Platform – Practice Web</p>
+    <nav class="nav">
+      <a href="#overview">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#activity">Activity</a>
+    </nav>
+
+    <div class="topbar-right">
+      <button id="themeToggle" class="chip">
+        🌞 Light
+      </button>
+      <button class="primary-btn small">Sign in (mock)</button>
+    </div>
   </header>
 
-  <main class="container">
-    <section>
-      <h2>🚀 Welcome to SOLGIT</h2>
-      <p>이 페이지는 깃허브 연습 및 SOLGIT 웹 실험용 페이지입니다.</p>
+  <main class="page">
+    <!-- Hero / Overview -->
+    <section id="overview" class="section hero">
+      <div class="hero-text">
+        <h1>
+          SOLGIT Playground<br />
+          <span class="accent">깃 연습과 UI 실험을 한 번에.</span>
+        </h1>
+        <p>
+          신한은행 내부 개발 플랫폼 SOLGIT을 상상하며 만들어본 연습용 웹사이트입니다.
+          브랜치 전략, MR 연습, UI 컴포
 
-      <button id="helloBtn">클릭해봐</button>
-      <p id="result"></p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© 2025 SOLGIT Practice. Designed by Zito.</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+          
