@@ -1,53 +1,550 @@
-* {
+/* 기본 리셋 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: "Pretendard", sans-serif;
-  background: #f5f7fa;
-  color: #222;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  background: var(--bg-page);
+  color: var(--text-main);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.header {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #0054ff 0%, #0d83ff 100%);
+/* 테마 변수 */
+:root {
+  --bg-page: #f5f7fb;
+  --bg-elevated: #ffffff;
+  --bg-elevated-soft: #f0f3fa;
+  --border-subtle: #dde2f0;
+  --text-main: #111827;
+  --text-sub: #6b7280;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --accent-border: rgba(37, 99, 235, 0.4);
+  --danger: #ef4444;
+  --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+body.dark-theme {
+  --bg-page: #020617;
+  --bg-elevated: #020617;
+  --bg-elevated-soft: #020617;
+  --border-subtle: #1f2937;
+  --text-main: #e5e7eb;
+  --text-sub: #9ca3af;
+  --accent: #60a5fa;
+  --accent-soft: rgba(96, 165, 250, 0.14);
+  --accent-border: rgba(96, 165, 250, 0.6);
+  --danger: #fb7185;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* 상단 바 */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg-page) 80%, transparent);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: radial-gradient(circle at 20% 20%, #facc15, #2563eb);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
   color: white;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.3);
 }
 
-.logo {
-  width: 70px;
-  margin-bottom: 14px;
+.logo-text {
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
+.logo-main {
+  font-weight: 700;
+  font-size: 18px;
 }
 
-button {
-  margin-top: 20px;
-  background: #0054ff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
+.logo-sub {
+  font-size: 11px;
+  color: var(--text-sub);
 }
 
-button:hover {
-  background: #003cb8;
-}
-
-.footer {
-  margin-top: 40px;
-  text-align: center;
-  padding: 16px;
-  background: #eee;
-  color: #666;
+.nav {
+  display: flex;
+  gap: 16px;
   font-size: 14px;
 }
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-sub);
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 페이지 레이아웃 */
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+/* 섹션 공통 */
+.section {
+  margin-top: 32px;
+}
+
+.section-header {
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.section-header p {
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.hero-text h1 {
+  font-size: clamp(26px, 3vw, 32px);
+  margin-bottom: 12px;
+}
+
+.hero-text .accent {
+  color: var(--accent);
+}
+
+.hero-text p {
+  font-size: 14px;
+  color: var(--text-sub);
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 14px;
+}
+
+/* Meta 정보 */
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.meta-item {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--bg-elevated-soft);
+  border: 1px solid var(--border-subtle);
+}
+
+.meta-label {
+  display: block;
+  color: var(--text-sub);
+}
+
+.meta-value {
+  font-weight: 600;
+}
+
+/* 패널 (가짜 git log) */
+.hero-panel {
+  border-radius: 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-elevated-soft) 70%, var(--accent-soft) 30%),
+    var(--bg-elevated-soft)
+  );
+  font-size: 12px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+}
+
+.dot.red {
+  background: #f97373;
+}
+
+.dot.yellow {
+  background: #facc15;
+}
+
+.dot.green {
+  background: #4ade80;
+}
+
+.panel-title {
+  margin-left: 4px;
+  color: var(--text-sub);
+}
+
+.panel-body {
+  padding: 10px 12px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.commit-item {
+  padding: 6px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--border-subtle) 80%, transparent);
+}
+
+.commit-item:last-child {
+  border-bottom: none;
+}
+
+.commit-hash {
+  color: var(--accent);
+}
+
+.commit-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-sub);
+}
+
+/* 카드 & 그리드 */
+.grid {
+  display: grid;
+  gap: 14px;
+}
+
+.features-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  border-radius: 16px;
+  padding: 16px 16px 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.card h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-bottom: 8px;
+}
+
+.card ul {
+  list-style: disc;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  background: var(--accent-soft);
+  padding: 2px 5px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  font-size: 12px;
+}
+
+/* Activity 영역 */
+.activity-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 16px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activity-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.activity-items {
+  list-style: none;
+}
+
+.activity-item {
+  padding: 10px 8px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 10px;
+  align-items: baseline;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated-soft);
+  font-size: 12px;
+}
+
+.activity-type {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+}
+
+.activity-type.commit {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+}
+
+.activity-type.branch {
+  border-color: rgba(52, 211, 153, 0.6);
+  background: rgba(16, 185, 129, 0.09);
+}
+
+.activity-title {
+  font-weight: 600;
+}
+
+.activity-meta {
+  font-size: 11px;
+  color: var(--text-sub);
+}
+
+/* 미션 카드 */
+.activity-side h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.mission-list {
+  font-size: 13px;
+  margin-left: 16px;
+  margin-bottom: 12px;
+}
+
+.mission-list li + li {
+  margin-top: 4px;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-top: 8px;
+}
+
+/* 버튼, 칩 */
+.primary-btn,
+.ghost-btn,
+.chip {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border 0.15s ease,
+    transform 0.05s ease, box-shadow 0.05s ease;
+  white-space: nowrap;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(37, 99, 235, 0.32);
+}
+
+.primary-btn.small {
+  padding: 6px 10px;
+  font-size: 12px;
+  box-shadow: none;
+}
+
+.primary-btn.full {
+  width: 100%;
+  justify-content: center;
+}
+
+.ghost-btn {
+  background: transparent;
+  border-color: var(--border-subtle);
+  color: var(--text-main);
+}
+
+.ghost-btn:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.chip {
+  background: var(--bg-elevated-soft);
+  border-color: transparent;
+  color: var(--text-sub);
+  font-size: 12px;
+}
+
+.chip:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.chip.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+/* 메시지 바 (하단 토스트) */
+.message-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  font-size: 12px;
+  color: var(--text-main);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.message-bar.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.message-bar.hidden {
+  transform: translateX(-50%) translateY(8px);
+}
+
+/* 푸터 */
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 14px 24px;
+  font-size: 11px;
+  color: var(--text-sub);
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.footer-dot {
+  opacity: 0.5;
+}
+
+/* 반응형 */
+@media (max-width: 860px) {
+  .topbar {
+    padding-inline: 16px;
+    gap: 10px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .activity-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar-right .small {
+    display: none;
+  }
+
+  .hero-meta {
+    flex-direction: column;
+  }
+}
+
