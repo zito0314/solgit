@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOLGIT – Internal Dev Platform</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOLGIT Playground – Internal Dev Platform</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="light-theme">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-mark">S</div>
+      <div class="logo-text">
+        <span class="logo-main">SOLGIT</span>
+        <span class="logo-sub">Internal Dev Platform</span>
+      </div>
+    </div>
 
 <body>
   <header class="header">
@@ -19,15 +28,80 @@
       <h2>🚀 Welcome to SOLGIT</h2>
       <p>이 페이지는 깃허브 연습 및 SOLGIT 웹 실험용 페이지입니다람쥐.</p>
 
-      <button id="helloBtn">클릭해봐</button>
-      <p id="result"></p>
+        <article class="card">
+          <h3>UI 실험 공간</h3>
+          <p>
+            버튼, 카드, 뱃지, 탭 등 SOLGIT에서 쓰일 것 같은 컴포넌트를
+            마음껏 실험해볼 수 있는 샌드박스입니다.
+          </p>
+          <ul>
+            <li>다크 모드 토글</li>
+            <li>호버/포커스 상태 디자인</li>
+            <li>반응형 레이아웃 실험</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>GitHub Pages 배포</h3>
+          <p>
+            정적 사이트를 GitHub Pages로 배포하는 전체 플로우를
+            반복해서 익힐 수 있습니다.
+          </p>
+          <ul>
+            <li>코드 작성 → 커밋 → 푸시</li>
+            <li>Settings &gt; Pages 설정</li>
+            <li>버전 업 시 배포 확인</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Activity -->
+    <section id="activity" class="section">
+      <div class="section-header">
+        <h2>📊 최근 활동 (Mock 데이터)</h2>
+        <p>실제 Git 연동은 아니고, JS에서 더미 데이터를 뿌려주는 형태입니다.</p>
+      </div>
+
+      <div class="activity-layout">
+        <div class="card activity-list">
+          <div class="activity-header">
+            <button class="chip active" data-filter="all">전체</button>
+            <button class="chip" data-filter="commit">커밋</button>
+            <button class="chip" data-filter="branch">브랜치</button>
+          </div>
+          <ul id="activityList" class="activity-items">
+            <!-- JS에서 아이템 채움 -->
+          </ul>
+        </div>
+
+        <div class="card activity-side">
+          <h3>오늘의 연습 미션</h3>
+          <ol class="mission-list">
+            <li>새 브랜치 <code>feature/ui-upgrade</code> 만들기</li>
+            <li>버튼 스타일 조금 수정 후 커밋</li>
+            <li>GitHub에 푸시하고, 브라우저에서 결과 확인</li>
+          </ol>
+          <button class="primary-btn full" data-action="mission">
+            ✅ 미션 완료 체크 (mock)
+          </button>
+          <p class="hint">
+            * 진짜 기능이 아니라, 인터랙션 느낌을 보려고 만든 영역이에요.
+          </p>
+        </div>
+      </div>
     </section>
   </main>
 
+  <div id="messageBar" class="message-bar hidden"></div>
+
   <footer class="footer">
-    <p>© 2025 SOLGIT Practice. Designed by 지토.</p>
+    <span>© 2025 SOLGIT Playground. Designed by 지토.</span>
+    <span class="footer-dot">·</span>
+    <span>Made for Git & UI practice.</span>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
